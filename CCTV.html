@@ -1,0 +1,2478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxSurveil | Premium Security & Surveillance Systems</title>
+    <meta name="description" content="Professional CCTV and surveillance systems with expert installation across Kenya. Premium security solutions for homes and businesses.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Model Viewer for 3D -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    
+    <style>
+        /* Core Variables */
+        :root {
+            --charcoal: #0f1218;
+            --slate: #1a1f2e;
+            --stone: #2d3748;
+            --porcelain: #e2e8f0;
+            --cloud: #f8fafc;
+            --sand: #d4b483;
+            --bronze: #a87c4f;
+            --border: rgba(255, 255, 255, 0.08);
+            --success: #10b981;
+            --error: #ef4444;
+            --transition: cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+        }
+        
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--porcelain);
+            background-color: var(--charcoal);
+            line-height: 1.6;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Source Serif Pro', serif;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        section {
+            padding: 100px 0;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Typography */
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.75rem);
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            margin-bottom: 1rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .text-lead {
+            font-size: 1.25rem;
+            color: var(--porcelain);
+            line-height: 1.6;
+            max-width: 720px;
+        }
+        
+        .text-body {
+            color: var(--porcelain);
+            opacity: 0.85;
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 18, 24, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1.25rem 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--cloud);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--sand) 0%, var(--bronze) 100%);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--charcoal);
+        }
+        
+        .nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        .nav-link {
+            color: var(--porcelain);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s var(--transition);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--sand);
+            transition: width 0.3s var(--transition);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--sand);
+        }
+        
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--porcelain);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 140px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(45, 55, 72, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(45, 55, 72, 0.3) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 720px;
+        }
+        
+        .hero-divider {
+            width: 80px;
+            height: 2px;
+            background: var(--sand);
+            margin: 2rem 0;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--sand);
+            color: var(--sand);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            transition: all 0.3s var(--transition);
+            cursor: pointer;
+            font-size: 1rem;
+            gap: 0.75rem;
+        }
+        
+        .btn:hover {
+            background: rgba(212, 180, 131, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .btn-primary {
+            background: var(--sand);
+            color: var(--charcoal);
+            margin-right: 1rem;
+        }
+        
+        .btn-primary:hover {
+            background: var(--bronze);
+            border-color: var(--bronze);
+            color: var(--charcoal);
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s var(--transition);
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            background: var(--charcoal);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: transform 0.3s var(--transition);
+        }
+        
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--slate);
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--porcelain);
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        /* Product Detail Modal */
+        .product-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .product-viewer {
+            background: var(--slate);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            height: 400px;
+            position: relative;
+        }
+        
+        .product-viewer-3d {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1f2e 0%, #2d3748 100%);
+        }
+        
+        .product-viewer-3d model-viewer {
+            width: 100%;
+            height: 100%;
+            --progress-bar-color: var(--sand);
+        }
+        
+        .view-controls {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+        
+        .view-control-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(15, 18, 24, 0.8);
+            border: 1px solid var(--border);
+            color: var(--porcelain);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s var(--transition);
+        }
+        
+        .view-control-btn:hover {
+            background: var(--sand);
+            color: var(--charcoal);
+            border-color: var(--sand);
+        }
+        
+        .product-specs-detail {
+            background: var(--slate);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .spec-item {
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--sand);
+        }
+        
+        .spec-label {
+            font-size: 0.875rem;
+            color: var(--porcelain);
+            opacity: 0.7;
+            margin-bottom: 0.25rem;
+        }
+        
+        .spec-value {
+            font-weight: 600;
+            color: var(--porcelain);
+            font-size: 1.125rem;
+        }
+        
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.75rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--porcelain);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--porcelain);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--sand);
+            background: rgba(212, 180, 131, 0.05);
+            box-shadow: 0 0 0 3px rgba(212, 180, 131, 0.1);
+        }
+        
+        .form-control.error {
+            border-color: var(--error);
+        }
+        
+        /* Property Type Dropdown - Enhanced Visibility */
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23d4b483' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1.25rem center;
+            background-size: 16px;
+            padding-right: 3rem;
+            font-weight: 500;
+            color: var(--porcelain);
+        }
+        
+        select.form-control option {
+            background: var(--charcoal);
+            color: var(--porcelain);
+            font-weight: 500;
+            padding: 1rem;
+            font-size: 1rem;
+        }
+        
+        select.form-control option:checked {
+            background: var(--sand);
+            color: var(--charcoal);
+            font-weight: 600;
+        }
+        
+        select.form-control option:hover {
+            background: var(--bronze);
+            color: var(--charcoal);
+        }
+        
+        .error-message {
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+            font-weight: 500;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
+            transition: all 0.3s var(--transition);
+        }
+        
+        .checkbox-group:hover {
+            background: rgba(212, 180, 131, 0.05);
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--sand);
+        }
+        
+        .checkbox-group label {
+            color: var(--porcelain);
+            font-weight: 500;
+            flex: 1;
+        }
+        
+        .booking-summary {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .booking-summary h4 {
+            margin-bottom: 1.5rem;
+            color: var(--sand);
+            font-size: 1.25rem;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .summary-label {
+            color: var(--porcelain);
+            opacity: 0.7;
+            font-weight: 500;
+        }
+        
+        .summary-value {
+            color: var(--porcelain);
+            font-weight: 600;
+            text-align: right;
+        }
+        
+        .form-success {
+            text-align: center;
+            padding: 3rem 2rem;
+            display: none;
+        }
+        
+        .form-success.active {
+            display: block;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        /* Products */
+        .products-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: var(--porcelain);
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 1.5rem auto 0;
+            line-height: 1.7;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            transition: all 0.4s var(--transition);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 180, 131, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .product-image {
+            height: 220px;
+            background: var(--slate);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--transition);
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: var(--sand);
+            color: var(--charcoal);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+        
+        .product-content {
+            padding: 1.75rem;
+        }
+        
+        .product-title {
+            margin-bottom: 0.75rem;
+            font-size: 1.375rem;
+            line-height: 1.3;
+        }
+        
+        .product-description {
+            font-size: 0.95rem;
+            color: var(--porcelain);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.75rem;
+        }
+        
+        .feature-tag {
+            font-size: 0.8rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            color: var(--porcelain);
+            font-weight: 500;
+        }
+        
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .product-price {
+            font-family: 'Source Serif Pro', serif;
+            font-size: 1.75rem;
+            color: var(--sand);
+            font-weight: 700;
+        }
+        
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.75rem;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s var(--transition);
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-view {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1.75rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--porcelain);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s var(--transition);
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        
+        .btn-view:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--sand);
+            color: var(--sand);
+            transform: translateY(-2px);
+        }
+        
+        /* Consultation Section */
+        .consultation-section {
+            background: var(--slate);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .consultation-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .consultation-content h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .consultation-list {
+            list-style: none;
+            margin-top: 2.5rem;
+        }
+        
+        .consultation-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            margin-bottom: 1.75rem;
+        }
+        
+        .consultation-list i {
+            color: var(--sand);
+            margin-top: 0.25rem;
+            font-size: 1.25rem;
+        }
+        
+        .consultation-form {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem;
+        }
+        
+        /* Trust Section */
+        .trust-section {
+            position: relative;
+        }
+        
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+        
+        .trust-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.4s var(--transition);
+        }
+        
+        .trust-card:hover {
+            border-color: rgba(212, 180, 131, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .trust-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.75rem;
+            background: rgba(212, 180, 131, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sand);
+            font-size: 1.75rem;
+        }
+        
+        .trust-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.375rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid var(--border);
+            padding: 5rem 0 2rem;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        
+        .footer-col h4 {
+            margin-bottom: 1.75rem;
+            font-size: 1.25rem;
+            color: var(--sand);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: var(--porcelain);
+            opacity: 0.8;
+            text-decoration: none;
+            transition: all 0.3s var(--transition);
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--sand);
+            padding-left: 0.5rem;
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            color: var(--porcelain);
+            opacity: 0.8;
+            font-weight: 500;
+        }
+        
+        .contact-info i {
+            color: var(--sand);
+            margin-top: 0.25rem;
+            min-width: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--porcelain);
+            text-decoration: none;
+            transition: all 0.3s var(--transition);
+            font-size: 1.125rem;
+        }
+        
+        .social-link:hover {
+            background: var(--sand);
+            color: var(--charcoal);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--porcelain);
+            opacity: 0.6;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 64px;
+            height: 64px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.75rem;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            z-index: 100;
+            transition: all 0.3s var(--transition);
+        }
+        
+        .whatsapp-float:hover {
+            background: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s var(--transition) forwards;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .product-detail {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .product-viewer {
+                height: 350px;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .consultation-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0;
+            }
+            
+            .header {
+                padding: 1rem 0;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--charcoal);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-top: 1px solid var(--border);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s var(--transition);
+                pointer-events: none;
+            }
+            
+            .nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+            
+            .hero {
+                padding-top: 140px;
+                padding-bottom: 100px;
+            }
+            
+            .btn {
+                width: 100%;
+                margin-bottom: 1rem;
+                justify-content: center;
+            }
+            
+            .btn-primary {
+                margin-right: 0;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .consultation-form {
+                padding: 2rem;
+            }
+            
+            .modal-body {
+                padding: 1.5rem;
+            }
+            
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .whatsapp-float {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 56px;
+                height: 56px;
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .product-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .product-price {
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            
+            .btn-view, .btn-whatsapp {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+            
+            h2 {
+                font-size: 1.875rem;
+            }
+        }
+        
+        /* Utility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mt-3 { margin-top: 3rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .mb-3 { margin-bottom: 3rem; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-mark">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                LuxSurveil
+            </a>
+            
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="nav" id="mainNav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#consultation" class="nav-link">Consultation</a>
+                <a href="#why-us" class="nav-link">Why Choose Us</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Consultation Modal -->
+    <div class="modal-overlay" id="consultationModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Schedule Security Consultation</h3>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="consultationForm">
+                    <div class="form-group">
+                        <label class="form-label" for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" class="form-control" required placeholder="Enter your full name">
+                        <div class="error-message" id="nameError">Please enter your full name</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email Address *</label>
+                        <input type="email" id="email" class="form-control" required placeholder="your.email@example.com">
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" class="form-control" required placeholder="0712 345 678">
+                        <div class="error-message" id="phoneError">Please enter a valid phone number</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="propertyType">Property Type *</label>
+                        <select id="propertyType" class="form-control" required>
+                            <option value="" disabled selected>Select your property type</option>
+                            <option value="residential">Residential Home</option>
+                            <option value="apartment">Apartment Building</option>
+                            <option value="office">Office Building</option>
+                            <option value="retail">Retail Store</option>
+                            <option value="warehouse">Warehouse</option>
+                            <option value="industrial">Industrial Facility</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div class="error-message" id="propertyError">Please select a property type</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="consultationDate">Preferred Date *</label>
+                        <input type="date" id="consultationDate" class="form-control" required>
+                        <div class="error-message" id="dateError">Please select a valid date (Monday to Saturday)</div>
+                        <small class="text-body" style="display: block; margin-top: 0.5rem; font-weight: 500;">Available: Monday - Saturday</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="consultationTime">Preferred Time *</label>
+                        <select id="consultationTime" class="form-control" required>
+                            <option value="" disabled selected>Select time slot</option>
+                            <option value="09:00">09:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="13:00">01:00 PM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                            <option value="17:00">05:00 PM</option>
+                        </select>
+                        <div class="error-message" id="timeError">Please select a time between 9 AM and 5 PM</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Reminder Options</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="emailReminder" checked>
+                            <label for="emailReminder">Email reminder 24 hours before appointment</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="smsReminder">
+                            <label for="smsReminder">SMS reminder 2 hours before appointment</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="additionalInfo">Additional Information</label>
+                        <textarea id="additionalInfo" class="form-control" rows="4" placeholder="Tell us about your security concerns, property size, specific areas to monitor, or any other requirements..."></textarea>
+                    </div>
+                    
+                    <div class="booking-summary" id="bookingSummary" style="display: none;">
+                        <h4>Appointment Summary</h4>
+                        <div class="summary-item">
+                            <span class="summary-label">Date:</span>
+                            <span class="summary-value" id="summaryDate"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Time:</span>
+                            <span class="summary-value" id="summaryTime"></span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Reminders:</span>
+                            <span class="summary-value" id="summaryReminders"></span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 2rem; padding: 1.125rem;">
+                        <i class="fas fa-calendar-check"></i> Confirm Booking
+                    </button>
+                </form>
+                
+                <div class="form-success" id="formSuccess">
+                    <div class="success-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3>Booking Confirmed!</h3>
+                    <p class="text-body mt-2" style="font-size: 1.125rem;">Your security consultation has been scheduled successfully.</p>
+                    <p class="text-body mt-1">We've sent a confirmation to your email. Our team will contact you shortly to confirm the details.</p>
+                    <p class="text-body mt-2" style="font-weight: 600; color: var(--sand);">Booking ID: <span id="bookingIdDisplay"></span></p>
+                    <button class="btn mt-3" id="closeSuccess" style="padding: 1rem 2rem;">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="productModalTitle"></h3>
+                <button class="modal-close" id="productModalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="product-detail" id="productDetailContent">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Intelligent Surveillance for Modern Security</h1>
+                <div class="hero-divider"></div>
+                <p class="text-lead">
+                    Professional CCTV and surveillance systems with expert installation across Kenya. 
+                    Premium security solutions designed for homes and businesses seeking reliable, advanced protection.
+                </p>
+                <div class="mt-3">
+                    <a href="#products" class="btn btn-primary">
+                        <i class="fas fa-camera"></i> View Products
+                    </a>
+                    <button class="btn" id="bookConsultationBtn">
+                        <i class="fas fa-calendar-alt"></i> Schedule Consultation
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products">
+        <div class="container">
+            <div class="products-header">
+                <h2>Premium Surveillance Solutions</h2>
+                <p class="section-subtitle">
+                    High-performance security systems with 3D visualization, professional installation, and 24/7 support. 
+                    Explore our products with interactive 3D viewers.
+                </p>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Product 1 - 4K Dome Camera -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1562975017-9d7d6d8b6c7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="4K Dome CCTV Camera - Professional grade dome surveillance camera">
+                        <span class="product-badge">Professional</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">4K Ultra HD Dome Camera</h3>
+                        <p class="product-description">
+                            Professional-grade dome camera with crystal clear 4K resolution, vandal-resistant housing, 
+                            and 360° coverage. Ideal for indoor and outdoor surveillance with infrared night vision.
+                        </p>
+                        <div class="product-features">
+                            <span class="feature-tag">4K Resolution</span>
+                            <span class="feature-tag">Night Vision</span>
+                            <span class="feature-tag">IP67 Rated</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">Ksh 24,500</div>
+                            <div style="display: flex; gap: 0.75rem; width: 100%;">
+                                <button class="btn-view view-product-detail" 
+                                    data-product-id="1"
+                                    data-product-name="4K Ultra HD Dome Camera"
+                                    data-product-price="Ksh 24,500"
+                                    data-product-description="Professional-grade dome camera with crystal clear 4K resolution, vandal-resistant housing, and 360° coverage. Ideal for indoor and outdoor surveillance with infrared night vision."
+                                    data-product-image="https://images.unsplash.com/photo-1562975017-9d7d6d8b6c7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                    <i class="fas fa-cube"></i> View 3D
+                                </button>
+                                <button class="btn-whatsapp buy-now" 
+                                    data-product="4K Ultra HD Dome Camera"
+                                    data-price="Ksh 24,500"
+                                    data-description="4K resolution dome camera with vandal-resistant housing and night vision">
+                                    <i class="fab fa-whatsapp"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 - PTZ Camera -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1585487000160-6eb9ce6b5a5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="PTZ Outdoor CCTV Camera - Pan-tilt-zoom surveillance camera">
+                        <span class="product-badge">Best Seller</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Smart PTZ Outdoor Camera</h3>
+                        <p class="product-description">
+                            Advanced PTZ camera with auto-tracking, 5x optical zoom, and vandal-resistant 
+                            housing. Perfect for large area monitoring with 355° pan and 90° tilt capabilities.
+                        </p>
+                        <div class="product-features">
+                            <span class="feature-tag">Auto Tracking</span>
+                            <span class="feature-tag">5x Zoom</span>
+                            <span class="feature-tag">Weatherproof</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">Ksh 34,800</div>
+                            <div style="display: flex; gap: 0.75rem; width: 100%;">
+                                <button class="btn-view view-product-detail"
+                                    data-product-id="2"
+                                    data-product-name="Smart PTZ Outdoor Camera"
+                                    data-product-price="Ksh 34,800"
+                                    data-product-description="Advanced PTZ camera with auto-tracking, 5x optical zoom, and vandal-resistant housing. Perfect for large area monitoring with 355° pan and 90° tilt capabilities."
+                                    data-product-image="https://images.unsplash.com/photo-1585487000160-6eb9ce6b5a5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                    <i class="fas fa-cube"></i> View 3D
+                                </button>
+                                <button class="btn-whatsapp buy-now"
+                                    data-product="Smart PTZ Outdoor Camera"
+                                    data-price="Ksh 34,800"
+                                    data-description="PTZ camera with auto-tracking and 5x optical zoom">
+                                    <i class="fab fa-whatsapp"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 - Bullet Camera -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Professional Bullet CCTV Camera - Outdoor surveillance camera">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Professional Bullet Camera</h3>
+                        <p class="product-description">
+                            High-visibility deterrent camera with powerful infrared LEDs for up to 30m night vision, 
+                            wide dynamic range, and rugged aluminum housing for maximum durability in outdoor conditions.
+                        </p>
+                        <div class="product-features">
+                            <span class="feature-tag">30m Night Vision</span>
+                            <span class="feature-tag">Wide Angle</span>
+                            <span class="feature-tag">Metal Housing</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">Ksh 18,900</div>
+                            <div style="display: flex; gap: 0.75rem; width: 100%;">
+                                <button class="btn-view view-product-detail"
+                                    data-product-id="3"
+                                    data-product-name="Professional Bullet Camera"
+                                    data-product-price="Ksh 18,900"
+                                    data-product-description="High-visibility deterrent camera with powerful infrared LEDs for up to 30m night vision, wide dynamic range, and rugged aluminum housing for maximum durability in outdoor conditions."
+                                    data-product-image="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                    <i class="fas fa-cube"></i> View 3D
+                                </button>
+                                <button class="btn-whatsapp buy-now"
+                                    data-product="Professional Bullet Camera"
+                                    data-price="Ksh 18,900"
+                                    data-description="Bullet camera with 30m night vision and rugged aluminum housing">
+                                    <i class="fab fa-whatsapp"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 - Wireless Camera -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1590958904536-5c6bc0c1f0d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Wireless Indoor CCTV Camera - Smart home surveillance">
+                        <span class="product-badge">Wireless</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">Wi-Fi Indoor Camera</h3>
+                        <p class="product-description">
+                            Easy-install WiFi camera with two-way audio, 1080p resolution, motion detection, 
+                            and privacy shutter. Perfect for home monitoring with mobile app access and cloud storage.
+                        </p>
+                        <div class="product-features">
+                            <span class="feature-tag">Wireless</span>
+                            <span class="feature-tag">Two-way Audio</span>
+                            <span class="feature-tag">Mobile App</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">Ksh 12,750</div>
+                            <div style="display: flex; gap: 0.75rem; width: 100%;">
+                                <button class="btn-view view-product-detail"
+                                    data-product-id="4"
+                                    data-product-name="Wi-Fi Indoor Camera"
+                                    data-product-price="Ksh 12,750"
+                                    data-product-description="Easy-install WiFi camera with two-way audio, 1080p resolution, motion detection, and privacy shutter. Perfect for home monitoring with mobile app access and cloud storage."
+                                    data-product-image="https://images.unsplash.com/photo-1590958904536-5c6bc0c1f0d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                    <i class="fas fa-cube"></i> View 3D
+                                </button>
+                                <button class="btn-whatsapp buy-now"
+                                    data-product="Wi-Fi Indoor Camera"
+                                    data-price="Ksh 12,750"
+                                    data-description="Wireless indoor camera with two-way audio and motion detection">
+                                    <i class="fab fa-whatsapp"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 - NVR System -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="8-Channel NVR System - Complete surveillance system">
+                        <span class="product-badge">Complete Kit</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">8-Channel NVR System</h3>
+                        <p class="product-description">
+                            Complete surveillance solution with 4 cameras, 8-channel NVR, 2TB storage, 
+                            and professional installation package. Supports remote viewing and smart alerts.
+                        </p>
+                        <div class="product-features">
+                            <span class="feature-tag">8 Channels</span>
+                            <span class="feature-tag">2TB Storage</span>
+                            <span class="feature-tag">Full Installation</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">Ksh 89,500</div>
+                            <div style="display: flex; gap: 0.75rem; width: 100%;">
+                                <button class="btn-view view-product-detail"
+                                    data-product-id="5"
+                                    data-product-name="8-Channel NVR System"
+                                    data-product-price="Ksh 89,500"
+                                    data-product-description="Complete surveillance solution with 4 cameras, 8-channel NVR, 2TB storage, and professional installation package. Supports remote viewing and smart alerts."
+                                    data-product-image="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                    <i class="fas fa-cube"></i> View 3D
+                                </button>
+                                <button class="btn-whatsapp buy-now"
+                                    data-product="8-Channel NVR System"
+                                    data-price="Ksh 89,500"
+                                    data-description="Complete surveillance system with 4 cameras and NVR">
+                                    <i class="fab fa-whatsapp"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 - AI Camera -->
+                <div class="product-card fade-in">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI Analytics CCTV Camera - Smart surveillance with facial recognition">
+                        <span class="product-badge">AI Powered</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title">AI Analytics Camera</h3>
+                        <p class="product-description">
+                            Smart camera with AI-powered person/vehicle detection, facial recognition, 
+                            line crossing alerts, and loitering detection for advanced security applications.
+                        </p>
+                        <div class="product-features">
+                            <span class="feature-tag">AI Detection</span>
+                            <span class="feature-tag">Smart Alerts</span>
+                            <span class="feature-tag">Facial Recognition</span>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-price">Ksh 41,200</div>
+                            <div style="display: flex; gap: 0.75rem; width: 100%;">
+                                <button class="btn-view view-product-detail"
+                                    data-product-id="6"
+                                    data-product-name="AI Analytics Camera"
+                                    data-product-price="Ksh 41,200"
+                                    data-product-description="Smart camera with AI-powered person/vehicle detection, facial recognition, line crossing alerts, and loitering detection for advanced security applications."
+                                    data-product-image="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80">
+                                    <i class="fas fa-cube"></i> View 3D
+                                </button>
+                                <button class="btn-whatsapp buy-now"
+                                    data-product="AI Analytics Camera"
+                                    data-price="Ksh 41,200"
+                                    data-description="AI camera with facial recognition and smart detection">
+                                    <i class="fab fa-whatsapp"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Section -->
+    <section class="consultation-section" id="consultation">
+        <div class="container">
+            <div class="consultation-grid">
+                <div class="consultation-content">
+                    <h2>Expert Security Consultation</h2>
+                    <p class="text-lead">
+                        Schedule a professional assessment with our security experts. We'll evaluate your property, 
+                        identify vulnerabilities, and design the perfect surveillance solution for your specific needs.
+                    </p>
+                    
+                    <ul class="consultation-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>On-site Property Assessment</strong>
+                                <p class="text-body">Comprehensive evaluation of your property's security vulnerabilities</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Custom System Design</strong>
+                                <p class="text-body">Tailored CCTV solutions based on your specific requirements and budget</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Professional Installation</strong>
+                                <p class="text-body">Expert installation with minimal disruption to your daily operations</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="consultation-form">
+                    <h3>Book Your Consultation</h3>
+                    <p class="text-body mb-3">Available Monday to Saturday, 9 AM to 5 PM</p>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="quickDate">Preferred Date</label>
+                        <input type="date" id="quickDate" class="form-control">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="quickTime">Preferred Time</label>
+                        <select id="quickTime" class="form-control">
+                            <option value="" selected>Select time slot</option>
+                            <option value="09:00">09:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="13:00">01:00 PM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                            <option value="17:00">05:00 PM</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn btn-primary" style="width: 100%; padding: 1.125rem;" id="quickBookBtn">
+                        <i class="fas fa-calendar-alt"></i> Schedule Consultation
+                    </button>
+                    
+                    <p class="text-body mt-3" style="font-size: 0.95rem; font-weight: 500;">
+                        <i class="fas fa-info-circle" style="color: var(--sand);"></i> You'll be able to add your details and set reminders on the next screen
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="trust-section" id="why-us">
+        <div class="container">
+            <div class="products-header">
+                <h2>Why Professionals Choose LuxSurveil</h2>
+                <p class="section-subtitle">
+                    Trusted by businesses and homeowners across Kenya for premium security solutions and professional service.
+                </p>
+            </div>
+            
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="trust-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Premium Quality</h3>
+                    <p class="text-body">Industrial-grade components with 3-year warranty and rigorous quality testing.</p>
+                </div>
+                
+                <div class="trust-card">
+                    <div class="trust-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Expert Installation</h3>
+                    <p class="text-body">Certified technicians ensure optimal camera placement and system configuration.</p>
+                </div>
+                
+                <div class="trust-card">
+                    <div class="trust-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p class="text-body">Round-the-clock technical assistance and remote monitoring options available.</p>
+                </div>
+                
+                <div class="trust-card">
+                    <div class="trust-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Smart Integration</h3>
+                    <p class="text-body">Control and monitor your surveillance system from anywhere with our mobile app.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo">
+                        <div class="logo-mark">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        LuxSurveil
+                    </div>
+                    <p class="text-body mt-2">
+                        Professional surveillance solutions with expert installation across Kenya. 
+                        Premium security systems for residential and commercial applications.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#consultation">Consultation</a></li>
+                        <li><a href="#why-us">Why Choose Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>Contact Information</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Westlands Office Park, Nairobi, Kenya</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+254 717 892 776</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@luxsurveil.co.ke</span>
+                        </li>
+                        <li>
+                            <i class="fab fa-whatsapp"></i>
+                            <span>+254 717 892 776</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> LuxSurveil Security Systems. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/254717892776?text=Hello%20LuxSurveil,%20I'd%20like%20to%20inquire%20about%20your%20security%20systems" 
+       class="whatsapp-float" 
+       target="_blank"
+       aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Mobile Navigation
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileToggle.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // WhatsApp Purchase Functionality
+        document.querySelectorAll('.buy-now').forEach(button => {
+            button.addEventListener('click', function() {
+                const product = this.getAttribute('data-product');
+                const price = this.getAttribute('data-price');
+                const description = this.getAttribute('data-description');
+                
+                // WhatsApp number: 0717892776 (converted to international format)
+                const phone = '254717892776';
+                
+                // Create the message
+                const message = `Hello LuxSurveil, I'd like to purchase the following product:%0A%0A*Product:* ${product}%0A*Price:* ${price}%0A*Description:* ${description}%0A%0APlease confirm availability and provide payment details.`;
+                
+                // Open WhatsApp
+                window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+            });
+        });
+        
+        // Consultation Booking System
+        const consultationModal = document.getElementById('consultationModal');
+        const productModal = document.getElementById('productModal');
+        const bookConsultationBtn = document.getElementById('bookConsultationBtn');
+        const quickBookBtn = document.getElementById('quickBookBtn');
+        const modalClose = document.getElementById('modalClose');
+        const productModalClose = document.getElementById('productModalClose');
+        const consultationForm = document.getElementById('consultationForm');
+        const formSuccess = document.getElementById('formSuccess');
+        const closeSuccess = document.getElementById('closeSuccess');
+        const bookingSummary = document.getElementById('bookingSummary');
+        
+        // WhatsApp number for business notifications
+        const BUSINESS_WHATSAPP = '254717892776';
+        
+        // Product Specifications Data with Real Images
+        const productSpecs = {
+            1: {
+                name: "4K Ultra HD Dome Camera",
+                price: "Ksh 24,500",
+                description: "Professional-grade dome camera with crystal clear 4K resolution, vandal-resistant housing, and 360° coverage",
+                image: "https://images.unsplash.com/photo-1562975017-9d7d6d8b6c7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                specs: [
+                    { label: "Resolution", value: "4K Ultra HD (3840x2160)" },
+                    { label: "Lens", value: "2.8mm wide-angle lens" },
+                    { label: "Night Vision", value: "30 meters infrared" },
+                    { label: "Weather Rating", value: "IP67 Water & Dust Proof" },
+                    { label: "Storage", value: "Supports up to 256GB microSD" },
+                    { label: "Connectivity", value: "Wi-Fi & Ethernet" },
+                    { label: "Power", value: "12V DC / PoE" },
+                    { label: "Warranty", value: "3 Years" }
+                ],
+                features: [
+                    "360° panoramic view",
+                    "Advanced motion detection",
+                    "Two-way audio",
+                    "Smart privacy zones",
+                    "Mobile app control",
+                    "Cloud storage option"
+                ]
+            },
+            2: {
+                name: "Smart PTZ Outdoor Camera",
+                price: "Ksh 34,800",
+                description: "Advanced PTZ camera with auto-tracking, 5x optical zoom, and vandal-resistant housing",
+                image: "https://images.unsplash.com/photo-1585487000160-6eb9ce6b5a5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                specs: [
+                    { label: "Resolution", value: "5MP Super HD" },
+                    { label: "Zoom", value: "5x optical zoom" },
+                    { label: "Night Vision", value: "50 meters infrared" },
+                    { label: "Weather Rating", value: "IP66 Weatherproof" },
+                    { label: "Pan/Tilt", value: "355° horizontal, 90° vertical" },
+                    { label: "Storage", value: "Supports NVR up to 8TB" },
+                    { label: "Power", value: "PoE+ (802.3at)" },
+                    { label: "Warranty", value: "3 Years" }
+                ],
+                features: [
+                    "Auto-tracking of moving objects",
+                    "Preset positions",
+                    "Pattern scanning",
+                    "Smart intrusion detection",
+                    "Advanced analytics",
+                    "Vandal-resistant housing"
+                ]
+            },
+            3: {
+                name: "Professional Bullet Camera",
+                price: "Ksh 18,900",
+                description: "High-visibility deterrent camera with powerful infrared LEDs for up to 30m night vision",
+                image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                specs: [
+                    { label: "Resolution", value: "4MP Full HD" },
+                    { label: "Lens", value: "3.6mm fixed lens" },
+                    { label: "Night Vision", value: "30 meters infrared" },
+                    { label: "Weather Rating", value: "IP67 Water & Dust Proof" },
+                    { label: "Viewing Angle", value: "90° diagonal" },
+                    { label: "Storage", value: "Supports microSD up to 128GB" },
+                    { label: "Power", value: "12V DC" },
+                    { label: "Warranty", value: "3 Years" }
+                ],
+                features: [
+                    "Visible deterrent design",
+                    "Wide dynamic range",
+                    "Motion-activated recording",
+                    "Aluminum alloy housing",
+                    "Easy wall mounting",
+                    "Mobile notifications"
+                ]
+            },
+            4: {
+                name: "Wi-Fi Indoor Camera",
+                price: "Ksh 12,750",
+                description: "Easy-install WiFi camera with two-way audio, 1080p resolution, and motion detection",
+                image: "https://images.unsplash.com/photo-1590958904536-5c6bc0c1f0d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                specs: [
+                    { label: "Resolution", value: "1080p Full HD" },
+                    { label: "Lens", value: "2.1mm wide-angle" },
+                    { label: "Night Vision", value: "10 meters infrared" },
+                    { label: "Connectivity", value: "Wi-Fi 2.4GHz" },
+                    { label: "Audio", value: "Two-way with noise cancellation" },
+                    { label: "Storage", value: "Cloud & microSD support" },
+                    { label: "Power", value: "USB 5V" },
+                    { label: "Warranty", value: "2 Years" }
+                ],
+                features: [
+                    "Wireless installation",
+                    "Privacy shutter",
+                    "Motion detection alerts",
+                    "Mobile app control",
+                    "Cloud storage",
+                    "Easy setup"
+                ]
+            },
+            5: {
+                name: "8-Channel NVR System",
+                price: "Ksh 89,500",
+                description: "Complete surveillance solution with 4 cameras, 8-channel NVR, and 2TB storage",
+                image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                specs: [
+                    { label: "Channels", value: "8-channel NVR" },
+                    { label: "Cameras", value: "4 x 4MP cameras included" },
+                    { label: "Storage", value: "2TB HDD pre-installed" },
+                    { label: "Resolution", value: "Up to 8MP per channel" },
+                    { label: "Connectivity", value: "LAN, HDMI, VGA" },
+                    { label: "Remote View", value: "Mobile & PC access" },
+                    { label: "Power", value: "Included PoE switch" },
+                    { label: "Warranty", value: "3 Years" }
+                ],
+                features: [
+                    "Complete surveillance kit",
+                    "Professional installation",
+                    "Remote monitoring",
+                    "Smart motion detection",
+                    "Playback and backup",
+                    "Expandable system"
+                ]
+            },
+            6: {
+                name: "AI Analytics Camera",
+                price: "Ksh 41,200",
+                description: "Smart camera with AI-powered person/vehicle detection and facial recognition",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                specs: [
+                    { label: "Resolution", value: "4K with AI chip" },
+                    { label: "AI Features", value: "Person/Vehicle detection" },
+                    { label: "Recognition", value: "Facial recognition" },
+                    { label: "Alerts", value: "Line crossing, intrusion" },
+                    { label: "Storage", value: "NVR & Cloud compatible" },
+                    { label: "Connectivity", value: "PoE+ & Wi-Fi" },
+                    { label: "Power", value: "12V DC / PoE+" },
+                    { label: "Warranty", value: "3 Years" }
+                ],
+                features: [
+                    "AI-powered analytics",
+                    "Facial recognition",
+                    "Smart alerts",
+                    "Line crossing detection",
+                    "Loitering detection",
+                    "Advanced security"
+                ]
+            }
+        };
+        
+        // Open consultation modal from hero button
+        bookConsultationBtn.addEventListener('click', () => {
+            consultationModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            initializeDatePicker();
+        });
+        
+        // Open consultation modal from quick booking
+        quickBookBtn.addEventListener('click', () => {
+            const quickDate = document.getElementById('quickDate').value;
+            const quickTime = document.getElementById('quickTime').value;
+            
+            consultationModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Pre-fill date and time if selected
+            if (quickDate) {
+                document.getElementById('consultationDate').value = quickDate;
+            }
+            if (quickTime) {
+                document.getElementById('consultationTime').value = quickTime;
+            }
+            
+            initializeDatePicker();
+            updateBookingSummary();
+        });
+        
+        // Close consultation modal
+        modalClose.addEventListener('click', () => {
+            consultationModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            resetForm();
+        });
+        
+        closeSuccess.addEventListener('click', () => {
+            consultationModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            resetForm();
+        });
+        
+        // Close product modal
+        productModalClose.addEventListener('click', () => {
+            productModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close modals when clicking outside
+        consultationModal.addEventListener('click', (e) => {
+            if (e.target === consultationModal) {
+                consultationModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                resetForm();
+            }
+        });
+        
+        productModal.addEventListener('click', (e) => {
+            if (e.target === productModal) {
+                productModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // 3D Product View Functionality
+        document.querySelectorAll('.view-product-detail').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.getAttribute('data-product-id');
+                const productName = this.getAttribute('data-product-name');
+                const productPrice = this.getAttribute('data-product-price');
+                const productDescription = this.getAttribute('data-product-description');
+                const productImage = this.getAttribute('data-product-image');
+                
+                openProductModal(productId, productName, productPrice, productDescription, productImage);
+            });
+        });
+        
+        function openProductModal(productId, productName, productPrice, productDescription, productImage) {
+            const product = productSpecs[productId];
+            if (!product) return;
+            
+            // Update modal title
+            document.getElementById('productModalTitle').textContent = productName;
+            
+            // Create product detail HTML with real image
+            const productDetailHTML = `
+                <div class="product-viewer">
+                    <div class="product-viewer-3d">
+                        <img src="${product.image || productImage}" alt="${productName}" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-md);">
+                    </div>
+                </div>
+                <div class="product-specs-detail">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                        <div>
+                            <h3 style="margin-bottom: 0.5rem;">${product.name}</h3>
+                            <div class="product-price" style="font-size: 2rem;">${product.price}</div>
+                        </div>
+                        <button class="btn-whatsapp buy-now-modal" 
+                            data-product="${product.name}"
+                            data-price="${product.price}"
+                            data-description="${product.description}">
+                            <i class="fab fa-whatsapp"></i> Buy Now
+                        </button>
+                    </div>
+                    
+                    <p class="text-body" style="margin-bottom: 2rem; font-size: 1.125rem;">${product.description}</p>
+                    
+                    <h4 style="margin-bottom: 1.5rem; color: var(--sand);">Technical Specifications</h4>
+                    <div class="specs-grid">
+                        ${product.specs.map(spec => `
+                            <div class="spec-item">
+                                <div class="spec-label">${spec.label}</div>
+                                <div class="spec-value">${spec.value}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <h4 style="margin-top: 2.5rem; margin-bottom: 1.5rem; color: var(--sand);">Key Features</h4>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                        ${product.features.map(feature => `
+                            <span class="feature-tag" style="font-size: 0.9rem; padding: 0.75rem 1.25rem;">${feature}</span>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // Insert HTML into modal
+            document.getElementById('productDetailContent').innerHTML = productDetailHTML;
+            
+            // Add event listener to modal buy button
+            setTimeout(() => {
+                document.querySelectorAll('.buy-now-modal').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const product = this.getAttribute('data-product');
+                        const price = this.getAttribute('data-price');
+                        const description = this.getAttribute('data-description');
+                        
+                        const message = `Hello LuxSurveil, I'd like to purchase the following product:%0A%0A*Product:* ${product}%0A*Price:* ${price}%0A*Description:* ${description}%0A%0APlease confirm availability and provide payment details.`;
+                        
+                        window.open(`https://wa.me/${BUSINESS_WHATSAPP}?text=${message}`, '_blank');
+                    });
+                });
+            }, 100);
+            
+            // Show modal
+            productModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Initialize date picker with restrictions
+        function initializeDatePicker() {
+            const dateInput = document.getElementById('consultationDate');
+            const today = new Date();
+            
+            // Set min date to today
+            dateInput.min = today.toISOString().split('T')[0];
+            
+            // Set max date to 90 days from today
+            const maxDate = new Date();
+            maxDate.setDate(today.getDate() + 90);
+            dateInput.max = maxDate.toISOString().split('T')[0];
+            
+            // Set initial value to tomorrow if not already set
+            if (!dateInput.value) {
+                const tomorrow = new Date();
+                tomorrow.setDate(today.getDate() + 1);
+                
+                // Ensure tomorrow is not Sunday
+                if (tomorrow.getDay() === 0) {
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                }
+                
+                dateInput.value = tomorrow.toISOString().split('T')[0];
+            }
+            
+            // Also set quick date if empty
+            const quickDate = document.getElementById('quickDate');
+            if (!quickDate.value) {
+                quickDate.value = dateInput.value;
+                quickDate.min = dateInput.min;
+                quickDate.max = dateInput.max;
+            }
+            
+            // Add input event to validate date
+            dateInput.addEventListener('input', validateDate);
+            document.getElementById('consultationTime').addEventListener('change', updateBookingSummary);
+            document.getElementById('emailReminder').addEventListener('change', updateBookingSummary);
+            document.getElementById('smsReminder').addEventListener('change', updateBookingSummary);
+            
+            validateDate(); // Initial validation
+            updateBookingSummary(); // Initial summary update
+        }
+        
+        // Validate date (Monday to Saturday only)
+        function validateDate() {
+            const dateInput = document.getElementById('consultationDate');
+            const dateError = document.getElementById('dateError');
+            
+            if (!dateInput.value) {
+                dateInput.classList.add('error');
+                dateError.classList.add('show');
+                return false;
+            }
+            
+            const selectedDate = new Date(dateInput.value);
+            const dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+            
+            // Check if date is Sunday (0) or invalid
+            if (dayOfWeek === 0) {
+                dateInput.classList.add('error');
+                dateError.classList.add('show');
+                dateError.textContent = 'Consultations are not available on Sundays. Please select Monday to Saturday.';
+                return false;
+            }
+            
+            // Check if date is in the past
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            if (selectedDate < today) {
+                dateInput.classList.add('error');
+                dateError.classList.add('show');
+                dateError.textContent = 'Please select a future date.';
+                return false;
+            }
+            
+            dateInput.classList.remove('error');
+            dateError.classList.remove('show');
+            updateBookingSummary();
+            return true;
+        }
+        
+        // Update booking summary
+        function updateBookingSummary() {
+            const dateInput = document.getElementById('consultationDate');
+            const timeSelect = document.getElementById('consultationTime');
+            const emailReminder = document.getElementById('emailReminder');
+            const smsReminder = document.getElementById('smsReminder');
+            
+            const summaryDate = document.getElementById('summaryDate');
+            const summaryTime = document.getElementById('summaryTime');
+            const summaryReminders = document.getElementById('summaryReminders');
+            
+            if (dateInput.value && timeSelect.value) {
+                // Format date
+                const date = new Date(dateInput.value);
+                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                summaryDate.textContent = date.toLocaleDateString('en-US', options);
+                
+                // Format time
+                const time = timeSelect.value;
+                const [hours, minutes] = time.split(':');
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                const formattedTime = `${hours % 12 || 12}:${minutes} ${ampm}`;
+                summaryTime.textContent = formattedTime;
+                
+                // Format reminders
+                const reminders = [];
+                if (emailReminder.checked) reminders.push('Email (24h before)');
+                if (smsReminder.checked) reminders.push('SMS (2h before)');
+                if (reminders.length === 0) reminders.push('No reminders set');
+                
+                summaryReminders.textContent = reminders.join(', ');
+                
+                bookingSummary.style.display = 'block';
+            } else {
+                bookingSummary.style.display = 'none';
+            }
+        }
+        
+        // Form validation and submission
+        consultationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Reset errors
+            document.querySelectorAll('.error-message').forEach(error => {
+                error.classList.remove('show');
+            });
+            document.querySelectorAll('.form-control').forEach(input => {
+                input.classList.remove('error');
+            });
+            
+            // Validate form
+            let isValid = true;
+            
+            // Validate name
+            const nameInput = document.getElementById('fullName');
+            if (!nameInput.value.trim()) {
+                nameInput.classList.add('error');
+                document.getElementById('nameError').classList.add('show');
+                isValid = false;
+            }
+            
+            // Validate email
+            const emailInput = document.getElementById('email');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailInput.value.trim() || !emailRegex.test(emailInput.value)) {
+                emailInput.classList.add('error');
+                document.getElementById('emailError').classList.add('show');
+                isValid = false;
+            }
+            
+            // Validate phone
+            const phoneInput = document.getElementById('phone');
+            const phoneRegex = /^[0-9+\-\s]{10,}$/;
+            if (!phoneInput.value.trim() || !phoneRegex.test(phoneInput.value.replace(/\s/g, ''))) {
+                phoneInput.classList.add('error');
+                document.getElementById('phoneError').classList.add('show');
+                isValid = false;
+            }
+            
+            // Validate property type
+            const propertySelect = document.getElementById('propertyType');
+            if (!propertySelect.value) {
+                propertySelect.classList.add('error');
+                document.getElementById('propertyError').classList.add('show');
+                isValid = false;
+            }
+            
+            // Validate date
+            if (!validateDate()) {
+                isValid = false;
+            }
+            
+            // Validate time
+            const timeSelect = document.getElementById('consultationTime');
+            if (!timeSelect.value) {
+                timeSelect.classList.add('error');
+                document.getElementById('timeError').classList.add('show');
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                return;
+            }
+            
+            // Prepare booking data
+            const bookingData = {
+                name: nameInput.value.trim(),
+                email: emailInput.value.trim(),
+                phone: phoneInput.value.trim(),
+                propertyType: propertySelect.options[propertySelect.selectedIndex].text,
+                date: document.getElementById('consultationDate').value,
+                time: timeSelect.value,
+                emailReminder: document.getElementById('emailReminder').checked,
+                smsReminder: document.getElementById('smsReminder').checked,
+                additionalInfo: document.getElementById('additionalInfo').value.trim(),
+                timestamp: new Date().toISOString(),
+                bookingId: 'LS-' + Date.now() + '-' + Math.floor(Math.random() * 1000)
+            };
+            
+            // Send booking to business via WhatsApp
+            const date = new Date(bookingData.date);
+            const formattedDate = date.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            const [hours, minutes] = bookingData.time.split(':');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const formattedTime = `${hours % 12 || 12}:${minutes} ${ampm}`;
+            
+            const message = `*NEW CONSULTATION BOOKING - ${bookingData.bookingId}*%0A%0A` +
+                           `*Client:* ${bookingData.name}%0A` +
+                           `*Email:* ${bookingData.email}%0A` +
+                           `*Phone:* ${bookingData.phone}%0A` +
+                           `*Property Type:* ${bookingData.propertyType}%0A` +
+                           `*Date:* ${formattedDate}%0A` +
+                           `*Time:* ${formattedTime}%0A` +
+                           `*Reminders:* ${bookingData.emailReminder ? 'Email (24h), ' : ''}${bookingData.smsReminder ? 'SMS (2h)' : 'None'}%0A` +
+                           `*Additional Info:* ${bookingData.additionalInfo || 'None'}%0A%0A` +
+                           `Booking ID: ${bookingData.bookingId}%0A` +
+                           `Received: ${new Date().toLocaleString('en-US', { timeZone: 'Africa/Nairobi' })}`;
+            
+            // Open WhatsApp with booking details for the business
+            window.open(`https://wa.me/${BUSINESS_WHATSAPP}?text=${message}`, '_blank');
+            
+            // Store booking locally
+            const bookings = JSON.parse(localStorage.getItem('luxsurveilBookings') || '[]');
+            bookings.push(bookingData);
+            localStorage.setItem('luxsurveilBookings', JSON.stringify(bookings));
+            
+            // Display booking ID to user
+            document.getElementById('bookingIdDisplay').textContent = bookingData.bookingId;
+            
+            // Show success message
+            consultationForm.style.display = 'none';
+            formSuccess.classList.add('active');
+            
+            // Set reminder notifications (simulated)
+            if (bookingData.emailReminder) {
+                scheduleEmailReminder(bookingData);
+            }
+            if (bookingData.smsReminder) {
+                scheduleSmsReminder(bookingData);
+            }
+            
+            // Clear quick booking form
+            document.getElementById('quickDate').value = '';
+            document.getElementById('quickTime').value = '';
+        });
+        
+        // Schedule email reminder (simulated)
+        function scheduleEmailReminder(booking) {
+            console.log(`Email reminder scheduled for ${booking.name} 24 hours before consultation on ${booking.date} at ${booking.time}`);
+        }
+        
+        // Schedule SMS reminder (simulated)
+        function scheduleSmsReminder(booking) {
+            console.log(`SMS reminder scheduled for ${booking.name} 2 hours before consultation on ${booking.date} at ${booking.time}`);
+        }
+        
+        // Reset form
+        function resetForm() {
+            consultationForm.style.display = 'block';
+            formSuccess.classList.remove('active');
+            consultationForm.reset();
+            
+            // Reset date to tomorrow
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            // Ensure tomorrow is not Sunday
+            if (tomorrow.getDay() === 0) {
+                tomorrow.setDate(tomorrow.getDate() + 1);
+            }
+            
+            document.getElementById('consultationDate').value = tomorrow.toISOString().split('T')[0];
+            document.getElementById('emailReminder').checked = true;
+            document.getElementById('smsReminder').checked = false;
+            
+            updateBookingSummary();
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Update active nav link on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year in footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Initialize quick booking date
+            const today = new Date();
+            const tomorrow = new Date();
+            tomorrow.setDate(today.getDate() + 1);
+            
+            // Ensure tomorrow is not Sunday
+            if (tomorrow.getDay() === 0) {
+                tomorrow.setDate(tomorrow.getDate() + 1);
+            }
+            
+            const quickDate = document.getElementById('quickDate');
+            quickDate.min = today.toISOString().split('T')[0];
+            
+            const maxDate = new Date();
+            maxDate.setDate(today.getDate() + 90);
+            quickDate.max = maxDate.toISOString().split('T')[0];
+            
+            if (!quickDate.value) {
+                quickDate.value = tomorrow.toISOString().split('T')[0];
+            }
+            
+            // Load existing bookings from localStorage
+            const bookings = JSON.parse(localStorage.getItem('luxsurveilBookings') || '[]');
+            console.log('Total bookings:', bookings.length);
+            
+            // Setup fade-in animations on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            document.querySelectorAll('.product-card, .trust-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
