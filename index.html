@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
     <style>
         :root {
             --color-offwhite: #f9f8f5;
@@ -47,6 +46,7 @@
             background-color: var(--color-offwhite);
             line-height: 1.6;
             overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
         
         h1, h2, h3, h4, h5 {
@@ -77,6 +77,9 @@
         
         button {
             font-family: var(--font-sans);
+            background: none;
+            border: none;
+            cursor: pointer;
         }
         
         .container {
@@ -86,7 +89,7 @@
             padding: 0 var(--space-md);
         }
         
-        /* Header */
+        /* =============== HEADER =============== */
         header {
             position: fixed;
             top: 0;
@@ -109,10 +112,9 @@
             font-size: 1.8rem;
             font-weight: 600;
             color: var(--color-charcoal);
-            text-decoration: none;
-            letter-spacing: -0.5px;
             display: flex;
             align-items: center;
+            z-index: 1001;
         }
         
         .logo-icon {
@@ -128,6 +130,40 @@
             font-weight: 700;
         }
         
+        /* Desktop Navigation - Visible by default */
+        .desktop-nav {
+            display: flex;
+            gap: var(--space-md);
+        }
+        
+        .desktop-nav a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+            transition: color var(--transition-smooth);
+            position: relative;
+        }
+        
+        .desktop-nav a:hover {
+            color: var(--color-earth);
+        }
+        
+        .desktop-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-earth);
+            transition: width var(--transition-smooth);
+        }
+        
+        .desktop-nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hamburger Menu Button - Hidden by default */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -136,20 +172,71 @@
             color: var(--color-charcoal);
             cursor: pointer;
             transition: color var(--transition-smooth);
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
         }
         
         .mobile-menu-btn:hover {
             color: var(--color-earth);
         }
         
-        /* Hero */
+        .mobile-menu-btn i {
+            transition: transform var(--transition-smooth);
+        }
+        
+        .mobile-menu-btn.active i {
+            transform: rotate(90deg);
+        }
+        
+        /* Mobile Menu - Hidden by default */
+        .mobile-menu {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            padding: var(--space-md);
+            border-bottom: 1px solid var(--color-border);
+            display: none;
+            flex-direction: column;
+            gap: var(--space-sm);
+            z-index: 999;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .mobile-menu a {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--color-border);
+            font-weight: 500;
+            transition: color var(--transition-smooth);
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--color-earth);
+        }
+        
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        /* =============== HERO SECTION =============== */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             padding-top: 80px;
             position: relative;
-            overflow: hidden;
         }
         
         .hero-content {
@@ -173,7 +260,7 @@
             animation: fadeInUp 1s forwards 0.6s;
         }
         
-        /* Buttons */
+        /* =============== BUTTONS =============== */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -190,7 +277,6 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             border-radius: 0;
-            text-decoration: none;
         }
         
         .btn:hover {
@@ -222,7 +308,7 @@
             background-color: #128C7E;
         }
         
-        /* Products Section */
+        /* =============== PRODUCTS SECTION =============== */
         .products-section {
             padding: var(--space-xl) 0;
             background-color: var(--color-cream);
@@ -388,7 +474,7 @@
             border-color: var(--color-earth);
         }
         
-        /* 360° Fullscreen Viewer */
+        /* =============== 360° FULLSCREEN VIEWER =============== */
         .fullscreen-viewer {
             position: fixed;
             top: 0;
@@ -464,7 +550,51 @@
             opacity: 1;
         }
         
-        /* Booking Section */
+        /* =============== SOCIAL MEDIA SECTION =============== */
+        .social-media-section {
+            padding: var(--space-lg) 0;
+            background-color: var(--color-offwhite);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .social-media-container {
+            text-align: center;
+        }
+        
+        .social-media-title {
+            margin-bottom: var(--space-md);
+            font-size: 1.2rem;
+            color: var(--color-charcoal);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--color-cream);
+            color: var(--color-charcoal);
+            border-radius: 50%;
+            transition: all var(--transition-smooth);
+            font-size: 1.2rem;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--color-earth);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* =============== BOOKING SECTION =============== */
         .booking-section {
             padding: var(--space-xl) 0;
         }
@@ -524,51 +654,7 @@
             gap: var(--space-xs);
         }
         
-        /* Social Media Section */
-        .social-media-section {
-            padding: var(--space-lg) 0;
-            background-color: var(--color-offwhite);
-            border-top: 1px solid var(--color-border);
-            border-bottom: 1px solid var(--color-border);
-        }
-        
-        .social-media-container {
-            text-align: center;
-        }
-        
-        .social-media-title {
-            margin-bottom: var(--space-md);
-            font-size: 1.2rem;
-            color: var(--color-charcoal);
-        }
-        
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-md);
-            flex-wrap: wrap;
-        }
-        
-        .social-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            background-color: var(--color-cream);
-            color: var(--color-charcoal);
-            border-radius: 50%;
-            transition: all var(--transition-smooth);
-            font-size: 1.2rem;
-        }
-        
-        .social-icon:hover {
-            background-color: var(--color-earth);
-            color: white;
-            transform: translateY(-3px);
-        }
-        
-        /* Footer */
+        /* =============== FOOTER =============== */
         footer {
             background-color: var(--color-charcoal);
             color: white;
@@ -604,7 +690,7 @@
             font-size: 0.9rem;
         }
         
-        /* WhatsApp Floating Button */
+        /* =============== WHATSAPP FLOATING BUTTON =============== */
         .whatsapp-float {
             position: fixed;
             bottom: var(--space-md);
@@ -620,7 +706,6 @@
             font-size: 1.8rem;
             box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
             z-index: 100;
-            text-decoration: none;
             transition: all var(--transition-smooth);
         }
         
@@ -630,7 +715,7 @@
             box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
         }
         
-        /* Animations */
+        /* =============== ANIMATIONS =============== */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -651,8 +736,10 @@
             }
         }
         
-        /* Responsive */
-        @media (max-width: 1024px) {
+        /* =============== RESPONSIVE DESIGN =============== */
+        
+        /* Tablet Devices (768px - 1024px) */
+        @media screen and (max-width: 1024px) {
             h1 {
                 font-size: 2.8rem;
             }
@@ -661,72 +748,22 @@
                 font-size: 2.2rem;
             }
             
+            .hero {
+                padding-top: 70px;
+            }
+            
             .booking-container {
                 grid-template-columns: 1fr;
+                gap: var(--space-lg);
             }
             
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .mobile-menu {
-                position: fixed;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                padding: var(--space-md);
-                border-bottom: 1px solid var(--color-border);
-                display: none;
-                flex-direction: column;
-                gap: var(--space-sm);
-                z-index: 1000;
-            }
-            
-            .mobile-menu.active {
-                display: flex;
-            }
-            
-            .mobile-menu a {
-                padding: 0.8rem 0;
-                border-bottom: 1px solid var(--color-border);
-            }
-            
-            .hero {
-                padding-top: 60px;
-            }
-            
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: var(--space-lg);
             }
             
             .service-options {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .close-fullscreen {
-                top: 10px;
-                right: 10px;
-                width: 40px;
-                height: 40px;
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .social-icons {
@@ -736,15 +773,143 @@
             .social-icon {
                 width: 45px;
                 height: 45px;
+                font-size: 1.1rem;
             }
         }
         
-        @media (max-width: 480px) {
+        /* Mobile Devices (480px - 767px) */
+        @media screen and (max-width: 767px) {
             .container {
                 padding: 0 var(--space-sm);
             }
             
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            h3 {
+                font-size: 1.5rem;
+            }
+            
+            .hero {
+                padding-top: 60px;
+                min-height: 80vh;
+            }
+            
+            .hero-content {
+                padding: var(--space-lg) 0;
+                text-align: center;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: var(--space-md);
+            }
+            
+            /* Hide desktop nav, show hamburger menu */
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: var(--space-md);
+            }
+            
+            .category-tabs {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: var(--space-xs);
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            
+            .category-tabs::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .tab-link {
+                padding: 0.7rem 1.2rem;
+                white-space: nowrap;
+                font-size: 0.85rem;
+            }
+            
+            .product-viewer-container {
+                height: 280px;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .service-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-icons {
+                gap: var(--space-xs);
+            }
+            
+            .social-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-md);
+            }
+            
+            .close-fullscreen {
+                top: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .product-title-overlay {
+                font-size: 1.2rem;
+                top: 20px;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+        /* Small Mobile Devices (0px - 479px) */
+        @media screen and (max-width: 479px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 0 0.8rem;
+            }
+            
             section {
+                padding: var(--space-lg) 0;
+            }
+            
+            .products-section {
                 padding: var(--space-lg) 0;
             }
             
@@ -754,26 +919,75 @@
             
             .btn {
                 padding: 0.9rem 1.8rem;
+                font-size: 0.9rem;
             }
             
-            .category-tabs {
-                justify-content: flex-start;
-                overflow-x: auto;
-                padding-bottom: var(--space-xs);
-                -webkit-overflow-scrolling: touch;
+            .hero-content .btn {
+                width: 100%;
+                margin-bottom: 0.5rem;
             }
             
-            .tab-link {
-                padding: 0.7rem 1.2rem;
-                white-space: nowrap;
+            .booking-form {
+                padding: var(--space-md);
             }
             
-            .product-actions {
-                flex-direction: column;
+            .form-control {
+                padding: 0.8rem;
+            }
+            
+            .social-icon {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .mobile-menu {
+                top: 65px;
+                padding: var(--space-sm);
+            }
+            
+            .section-header p {
+                font-size: 0.95rem;
             }
         }
         
-        /* Performance Optimizations */
+        /* Large Desktop Screens (1920px and above) */
+        @media screen and (min-width: 1920px) {
+            .container {
+                max-width: 1600px;
+            }
+            
+            h1 {
+                font-size: 4rem;
+            }
+            
+            h2 {
+                font-size: 3rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            }
+        }
+        
+        /* Landscape Orientation for Mobile */
+        @media screen and (max-height: 600px) and (orientation: landscape) {
+            .hero {
+                min-height: 120vh;
+                padding-top: 70px;
+            }
+            
+            .hero-content {
+                padding: var(--space-md) 0;
+            }
+            
+            .mobile-menu {
+                max-height: 70vh;
+                overflow-y: auto;
+            }
+        }
+        
+        /* =============== PERFORMANCE OPTIMIZATIONS =============== */
         .performance-warning {
             display: none;
             position: fixed;
@@ -815,16 +1029,47 @@
             outline-offset: 2px;
         }
         
-        /* Mobile menu styles */
-        .mobile-menu a {
-            color: var(--color-charcoal);
-            font-weight: 500;
-            transition: color var(--transition-smooth);
-            text-decoration: none;
+        /* Smooth scrolling for iOS */
+        @supports (-webkit-touch-callout: none) {
+            .hero {
+                min-height: -webkit-fill-available;
+            }
         }
         
-        .mobile-menu a:hover {
-            color: var(--color-earth);
+        /* Prevent horizontal scroll on mobile */
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Improve tap targets on mobile */
+        @media (max-width: 767px) {
+            .tab-link,
+            .product-action-btn,
+            .service-option input {
+                min-height: 44px;
+            }
+            
+            .mobile-menu a {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+        }
+        
+        /* Loading animation */
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .loading-indicator::after {
+            content: '...';
+            animation: pulse 1.5s infinite;
         }
     </style>
 </head>
@@ -837,24 +1082,29 @@
                 <span>Designs</span>
             </a>
             
+            <!-- Desktop Navigation - Visible on larger screens -->
             <nav class="desktop-nav">
                 <a href="#products">Products</a>
                 <a href="#booking">Services</a>
                 <a href="#contact">Contact</a>
+                <a href="https://wa.me/254717892776" target="_blank" class="btn btn-whatsapp" style="padding: 0.5rem 1rem; font-size: 0.85rem;">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
             </nav>
             
-            <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle menu">
+            <!-- Hamburger Menu Button - Hidden on desktop, visible on mobile -->
+            <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
         
-        <!-- Mobile Menu -->
+        <!-- Mobile Menu - Hidden on desktop -->
         <div class="mobile-menu" id="mobile-menu">
             <a href="#home">Home</a>
             <a href="#products">Products</a>
             <a href="#booking">Services</a>
             <a href="#contact">Contact</a>
-            <a href="https://wa.me/254717892776" target="_blank" class="btn btn-whatsapp" style="margin-top: var(--space-sm);">
+            <a href="https://wa.me/254717892776" target="_blank" class="btn btn-whatsapp">
                 <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
         </div>
@@ -1166,43 +1416,8 @@
             }
         ];
 
-        // 3D Models and Textures
-        const modelTextures = {
-            tshirt: {
-                color: 0x2c3e50,
-                roughness: 0.7,
-                metalness: 0.1
-            },
-            cap: {
-                color: 0x1a1a1a,
-                roughness: 0.8,
-                metalness: 0.05
-            },
-            mug: {
-                color: 0xffffff,
-                roughness: 0.5,
-                metalness: 0.2
-            },
-            poster: {
-                color: 0xf9f8f5,
-                roughness: 0.9,
-                metalness: 0
-            },
-            package: {
-                color: 0xa67c52,
-                roughness: 0.6,
-                metalness: 0.1
-            },
-            banner: {
-                color: 0x5a6c7d,
-                roughness: 0.7,
-                metalness: 0
-            }
-        };
-
         // Global Variables
         let currentProduct = null;
-        let currentViewer = null;
         let isWebGLSupported = true;
         let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
         
@@ -1231,7 +1446,6 @@
             }
             
             if (!isWebGLSupported) {
-                console.warn('WebGL not supported, falling back to static images');
                 showPerformanceWarning();
             }
             
@@ -1258,7 +1472,27 @@
             
             // Add scroll animations
             initScrollAnimations();
+            
+            // Check initial screen size
+            handleResize();
+            
+            // Add resize listener
+            window.addEventListener('resize', handleResize);
         });
+        
+        // Handle screen resize
+        function handleResize() {
+            const isMobileView = window.innerWidth <= 767;
+            const menuBtn = document.getElementById('mobile-menu-toggle');
+            const menu = document.getElementById('mobile-menu');
+            
+            // On larger screens, ensure mobile menu is closed
+            if (!isMobileView && menu.classList.contains('active')) {
+                menu.classList.remove('active');
+                menuBtn.classList.remove('active');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+        }
         
         function renderProducts(category) {
             // Clear the grid
@@ -1352,286 +1586,6 @@
             });
         }
         
-        function initializeProductViewer(product) {
-            const container = document.querySelector(`[data-product-id="${product.id}"]`);
-            const canvas = document.getElementById(`canvas-${product.id}`);
-            const loading = container.querySelector('.loading-indicator');
-            const hint = container.querySelector('.interaction-hint');
-            
-            if (!canvas) return;
-            
-            // Set canvas size
-            canvas.width = container.clientWidth;
-            canvas.height = container.clientHeight;
-            
-            // Create Three.js scene
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(50, canvas.width / canvas.height, 0.1, 1000);
-            const renderer = new THREE.WebGLRenderer({ 
-                canvas: canvas,
-                antialias: true,
-                alpha: true,
-                powerPreference: "high-performance"
-            });
-            
-            renderer.setSize(canvas.width, canvas.height);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            
-            // Lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-            scene.add(ambientLight);
-            
-            const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-            directionalLight.position.set(5, 5, 5);
-            scene.add(directionalLight);
-            
-            const backLight = new THREE.DirectionalLight(0xffffff, 0.3);
-            backLight.position.set(-5, -5, -5);
-            scene.add(backLight);
-            
-            // Create product geometry based on model type
-            let geometry, material, mesh;
-            const textureProps = modelTextures[product.model] || modelTextures.tshirt;
-            
-            switch(product.model) {
-                case 'tshirt':
-                    geometry = new THREE.BoxGeometry(2, 2.5, 0.2);
-                    geometry.translate(0, -0.2, 0);
-                    break;
-                case 'cap':
-                    geometry = new THREE.ConeGeometry(1, 0.5, 8);
-                    geometry.translate(0, 0.5, 0);
-                    break;
-                case 'mug':
-                    geometry = new THREE.CylinderGeometry(0.8, 0.8, 1.2, 16);
-                    break;
-                case 'poster':
-                    geometry = new THREE.PlaneGeometry(2, 2.5);
-                    break;
-                case 'package':
-                    geometry = new THREE.BoxGeometry(2, 1.5, 1);
-                    break;
-                case 'banner':
-                    geometry = new THREE.PlaneGeometry(3, 1);
-                    break;
-                default:
-                    geometry = new THREE.BoxGeometry(2, 2, 2);
-            }
-            
-            material = new THREE.MeshStandardMaterial({
-                color: textureProps.color,
-                roughness: textureProps.roughness,
-                metalness: textureProps.metalness
-            });
-            
-            mesh = new THREE.Mesh(geometry, material);
-            scene.add(mesh);
-            
-            // Position camera
-            camera.position.z = product.model === 'poster' || product.model === 'banner' ? 3 : 5;
-            
-            // Add B&H branding texture
-            addBrandingTexture(mesh, product.model);
-            
-            // Variables for interaction
-            let isInteracting = false;
-            let previousTouchDistance = null;
-            let rotation = { x: 0, y: 0 };
-            let targetRotation = { x: 0, y: 0 };
-            let inertia = { x: 0, y: 0 };
-            let zoomLevel = 1;
-            let maxZoom = 3;
-            let minZoom = 0.5;
-            
-            // Mouse/Touch event handlers
-            function onPointerDown(event) {
-                event.preventDefault();
-                isInteracting = true;
-                
-                if (event.touches) {
-                    if (event.touches.length === 1) {
-                        previousMousePosition.x = event.touches[0].clientX;
-                        previousMousePosition.y = event.touches[0].clientY;
-                    } else if (event.touches.length === 2) {
-                        previousTouchDistance = Math.hypot(
-                            event.touches[0].clientX - event.touches[1].clientX,
-                            event.touches[0].clientY - event.touches[1].clientY
-                        );
-                    }
-                } else {
-                    previousMousePosition.x = event.clientX;
-                    previousMousePosition.y = event.clientY;
-                }
-                
-                // Hide hint
-                hint.style.opacity = '0';
-            }
-            
-            function onPointerMove(event) {
-                if (!isInteracting) return;
-                event.preventDefault();
-                
-                if (event.touches) {
-                    if (event.touches.length === 1) {
-                        // Single touch - rotation
-                        const deltaX = event.touches[0].clientX - previousMousePosition.x;
-                        const deltaY = event.touches[0].clientY - previousMousePosition.y;
-                        
-                        targetRotation.x += deltaY * 0.01;
-                        targetRotation.y += deltaX * 0.01;
-                        
-                        // Apply limits to vertical rotation
-                        targetRotation.x = Math.max(-Math.PI/2, Math.min(Math.PI/2, targetRotation.x));
-                        
-                        previousMousePosition.x = event.touches[0].clientX;
-                        previousMousePosition.y = event.touches[0].clientY;
-                        
-                        // Store inertia
-                        inertia.x = deltaY * 0.005;
-                        inertia.y = deltaX * 0.005;
-                    } else if (event.touches.length === 2) {
-                        // Pinch zoom
-                        const touchDistance = Math.hypot(
-                            event.touches[0].clientX - event.touches[1].clientX,
-                            event.touches[0].clientY - event.touches[1].clientY
-                        );
-                        
-                        if (previousTouchDistance !== null) {
-                            const delta = touchDistance - previousTouchDistance;
-                            zoomLevel = Math.max(minZoom, Math.min(maxZoom, zoomLevel - delta * 0.01));
-                            camera.position.z = (product.model === 'poster' || product.model === 'banner' ? 3 : 5) * zoomLevel;
-                        }
-                        
-                        previousTouchDistance = touchDistance;
-                    }
-                } else {
-                    // Mouse movement
-                    const deltaX = event.clientX - previousMousePosition.x;
-                    const deltaY = event.clientY - previousMousePosition.y;
-                    
-                    targetRotation.x += deltaY * 0.01;
-                    targetRotation.y += deltaX * 0.01;
-                    
-                    // Apply limits to vertical rotation
-                    targetRotation.x = Math.max(-Math.PI/2, Math.min(Math.PI/2, targetRotation.x));
-                    
-                    previousMousePosition.x = event.clientX;
-                    previousMousePosition.y = event.clientY;
-                    
-                    // Store inertia
-                    inertia.x = deltaY * 0.005;
-                    inertia.y = deltaX * 0.005;
-                }
-            }
-            
-            function onPointerUp(event) {
-                event.preventDefault();
-                isInteracting = false;
-                previousTouchDistance = null;
-            }
-            
-            function onWheel(event) {
-                event.preventDefault();
-                zoomLevel = Math.max(minZoom, Math.min(maxZoom, zoomLevel - event.deltaY * 0.001));
-                camera.position.z = (product.model === 'poster' || product.model === 'banner' ? 3 : 5) * zoomLevel;
-            }
-            
-            // Add event listeners
-            container.addEventListener('mousedown', onPointerDown);
-            container.addEventListener('mousemove', onPointerMove);
-            container.addEventListener('mouseup', onPointerUp);
-            container.addEventListener('mouseleave', onPointerUp);
-            
-            container.addEventListener('touchstart', onPointerDown, { passive: false });
-            container.addEventListener('touchmove', onPointerMove, { passive: false });
-            container.addEventListener('touchend', onPointerUp);
-            container.addEventListener('touchcancel', onPointerUp);
-            
-            container.addEventListener('wheel', onWheel, { passive: false });
-            
-            // Animation loop
-            function animate() {
-                requestAnimationFrame(animate);
-                
-                // Smooth rotation with easing
-                rotation.x += (targetRotation.x - rotation.x) * 0.1;
-                rotation.y += (targetRotation.y - rotation.y) * 0.1;
-                
-                // Apply inertia when not interacting
-                if (!isInteracting) {
-                    targetRotation.x += inertia.x;
-                    targetRotation.y += inertia.y;
-                    
-                    // Dampen inertia
-                    inertia.x *= 0.95;
-                    inertia.y *= 0.95;
-                    
-                    // Stop inertia when very small
-                    if (Math.abs(inertia.x) < 0.001) inertia.x = 0;
-                    if (Math.abs(inertia.y) < 0.001) inertia.y = 0;
-                    
-                    // Apply rotation limits
-                    targetRotation.x = Math.max(-Math.PI/2, Math.min(Math.PI/2, targetRotation.x));
-                }
-                
-                // Apply rotation to mesh
-                mesh.rotation.x = rotation.x;
-                mesh.rotation.y = rotation.y;
-                
-                renderer.render(scene, camera);
-            }
-            
-            // Start animation
-            animate();
-            
-            // Hide loading indicator
-            loading.style.opacity = '0';
-            setTimeout(() => {
-                loading.style.display = 'none';
-            }, 300);
-        }
-        
-        function addBrandingTexture(mesh, modelType) {
-            // Create canvas for B&H Designs branding
-            const canvas = document.createElement('canvas');
-            canvas.width = 256;
-            canvas.height = 256;
-            const ctx = canvas.getContext('2d');
-            
-            // Draw background
-            ctx.fillStyle = 'rgba(255, 255, 255, 0)';
-            ctx.fillRect(0, 0, 256, 256);
-            
-            // Draw B&H Designs text
-            ctx.font = 'bold 40px "Playfair Display", serif';
-            ctx.fillStyle = '#a67c52';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('B&H', 128, 100);
-            
-            ctx.font = '18px "Inter", sans-serif';
-            ctx.fillText('DESIGNS', 128, 150);
-            
-            // Create texture from canvas
-            const texture = new THREE.CanvasTexture(canvas);
-            texture.needsUpdate = true;
-            
-            // Apply texture based on model type
-            if (modelType === 'tshirt') {
-                const material = new THREE.MeshStandardMaterial({
-                    map: texture,
-                    color: 0xffffff,
-                    roughness: 0.8,
-                    metalness: 0
-                });
-                
-                const logoGeometry = new THREE.PlaneGeometry(1.2, 0.4);
-                const logoMesh = new THREE.Mesh(logoGeometry, material);
-                logoMesh.position.set(0, 0.5, 0.101);
-                mesh.add(logoMesh);
-            }
-        }
-        
         function openFullscreenViewer(productId) {
             const product = products.find(p => p.id === productId);
             if (!product) return;
@@ -1658,310 +1612,10 @@
             }
         }
         
-        function initializeFullscreenViewer(product) {
-            // Set canvas size
-            fullscreenCanvas.width = fullscreenContainer.clientWidth;
-            fullscreenCanvas.height = fullscreenContainer.clientHeight;
-            
-            // Create Three.js scene
-            const scene = new THREE.Scene();
-            scene.background = new THREE.Color(0xf2f0e8);
-            
-            const camera = new THREE.PerspectiveCamera(
-                50, 
-                fullscreenCanvas.width / fullscreenCanvas.height, 
-                0.1, 
-                1000
-            );
-            
-            const renderer = new THREE.WebGLRenderer({ 
-                canvas: fullscreenCanvas,
-                antialias: true,
-                powerPreference: "high-performance"
-            });
-            
-            renderer.setSize(fullscreenCanvas.width, fullscreenCanvas.height);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            
-            // Enhanced lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-            scene.add(ambientLight);
-            
-            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.6);
-            directionalLight1.position.set(5, 5, 5);
-            scene.add(directionalLight1);
-            
-            const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
-            directionalLight2.position.set(-5, 3, -5);
-            scene.add(directionalLight2);
-            
-            const directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.3);
-            directionalLight3.position.set(0, -5, 0);
-            scene.add(directionalLight3);
-            
-            // Create product
-            const textureProps = modelTextures[product.model] || modelTextures.tshirt;
-            let geometry, mesh;
-            
-            switch(product.model) {
-                case 'tshirt':
-                    geometry = new THREE.BoxGeometry(3, 3.5, 0.3);
-                    geometry.translate(0, -0.3, 0);
-                    break;
-                case 'cap':
-                    geometry = new THREE.ConeGeometry(1.5, 0.8, 16);
-                    geometry.translate(0, 0.8, 0);
-                    break;
-                case 'mug':
-                    geometry = new THREE.CylinderGeometry(1.2, 1.2, 1.8, 32);
-                    break;
-                case 'poster':
-                    geometry = new THREE.PlaneGeometry(3, 3.75);
-                    break;
-                case 'package':
-                    geometry = new THREE.BoxGeometry(3, 2.25, 1.5);
-                    break;
-                case 'banner':
-                    geometry = new THREE.PlaneGeometry(4.5, 1.5);
-                    break;
-                default:
-                    geometry = new THREE.BoxGeometry(3, 3, 3);
-            }
-            
-            const material = new THREE.MeshStandardMaterial({
-                color: textureProps.color,
-                roughness: textureProps.roughness,
-                metalness: textureProps.metalness
-            });
-            
-            mesh = new THREE.Mesh(geometry, material);
-            scene.add(mesh);
-            
-            // Add branding
-            addFullscreenBranding(mesh, product.model);
-            
-            // Position camera
-            camera.position.z = product.model === 'poster' || product.model === 'banner' ? 4 : 7;
-            
-            // Interaction variables
-            let isDragging = false;
-            let previousPosition = { x: 0, y: 0 };
-            let rotation = { x: 0, y: 0 };
-            let targetRotation = { x: 0, y: 0 };
-            let inertia = { x: 0, y: 0 };
-            let zoom = 1;
-            const minZoom = 0.5;
-            const maxZoom = 3;
-            
-            // Fullscreen interaction handlers
-            function onFullscreenPointerDown(event) {
-                isDragging = true;
-                
-                if (event.touches) {
-                    previousPosition.x = event.touches[0].clientX;
-                    previousPosition.y = event.touches[0].clientY;
-                } else {
-                    previousPosition.x = event.clientX;
-                    previousPosition.y = event.clientY;
-                }
-                
-                // Hide title overlay during interaction
-                productTitleOverlay.classList.remove('visible');
-            }
-            
-            function onFullscreenPointerMove(event) {
-                if (!isDragging) return;
-                
-                let deltaX, deltaY;
-                
-                if (event.touches) {
-                    if (event.touches.length === 1) {
-                        deltaX = event.touches[0].clientX - previousPosition.x;
-                        deltaY = event.touches[0].clientY - previousPosition.y;
-                        
-                        previousPosition.x = event.touches[0].clientX;
-                        previousPosition.y = event.touches[0].clientY;
-                    } else if (event.touches.length === 2) {
-                        // Pinch zoom
-                        const touchDistance = Math.hypot(
-                            event.touches[0].clientX - event.touches[1].clientX,
-                            event.touches[0].clientY - event.touches[1].clientY
-                        );
-                        
-                        if (event.touches[0].previousTouchDistance) {
-                            const delta = touchDistance - event.touches[0].previousTouchDistance;
-                            zoom = Math.max(minZoom, Math.min(maxZoom, zoom - delta * 0.005));
-                            camera.position.z = (product.model === 'poster' || product.model === 'banner' ? 4 : 7) * zoom;
-                        }
-                        
-                        event.touches[0].previousTouchDistance = touchDistance;
-                        return;
-                    } else {
-                        return;
-                    }
-                } else {
-                    deltaX = event.clientX - previousPosition.x;
-                    deltaY = event.clientY - previousPosition.y;
-                    
-                    previousPosition.x = event.clientX;
-                    previousPosition.y = event.clientY;
-                }
-                
-                // Apply rotation
-                targetRotation.x += deltaY * 0.01;
-                targetRotation.y += deltaX * 0.01;
-                
-                // Limit vertical rotation
-                targetRotation.x = Math.max(-Math.PI/2, Math.min(Math.PI/2, targetRotation.x));
-                
-                // Store inertia
-                inertia.x = deltaY * 0.005;
-                inertia.y = deltaX * 0.005;
-            }
-            
-            function onFullscreenPointerUp() {
-                isDragging = false;
-                
-                // Show title overlay after interaction
-                setTimeout(() => {
-                    productTitleOverlay.classList.add('visible');
-                }, 1000);
-            }
-            
-            function onFullscreenWheel(event) {
-                event.preventDefault();
-                zoom = Math.max(minZoom, Math.min(maxZoom, zoom - event.deltaY * 0.001));
-                camera.position.z = (product.model === 'poster' || product.model === 'banner' ? 4 : 7) * zoom;
-            }
-            
-            // Add event listeners
-            fullscreenContainer.addEventListener('mousedown', onFullscreenPointerDown);
-            fullscreenContainer.addEventListener('mousemove', onFullscreenPointerMove);
-            fullscreenContainer.addEventListener('mouseup', onFullscreenPointerUp);
-            fullscreenContainer.addEventListener('mouseleave', onFullscreenPointerUp);
-            
-            fullscreenContainer.addEventListener('touchstart', onFullscreenPointerDown, { passive: false });
-            fullscreenContainer.addEventListener('touchmove', onFullscreenPointerMove, { passive: false });
-            fullscreenContainer.addEventListener('touchend', onFullscreenPointerUp);
-            fullscreenContainer.addEventListener('touchcancel', onFullscreenPointerUp);
-            
-            fullscreenContainer.addEventListener('wheel', onFullscreenWheel, { passive: false });
-            
-            // Animation loop
-            function animateFullscreen() {
-                requestAnimationFrame(animateFullscreen);
-                
-                // Smooth rotation with easing
-                rotation.x += (targetRotation.x - rotation.x) * 0.1;
-                rotation.y += (targetRotation.y - rotation.y) * 0.1;
-                
-                // Apply inertia when not dragging
-                if (!isDragging) {
-                    targetRotation.x += inertia.x;
-                    targetRotation.y += inertia.y;
-                    
-                    // Dampen inertia
-                    inertia.x *= 0.95;
-                    inertia.y *= 0.95;
-                    
-                    // Stop when very small
-                    if (Math.abs(inertia.x) < 0.001) inertia.x = 0;
-                    if (Math.abs(inertia.y) < 0.001) inertia.y = 0;
-                    
-                    // Apply limits
-                    targetRotation.x = Math.max(-Math.PI/2, Math.min(Math.PI/2, targetRotation.x));
-                }
-                
-                // Apply rotation
-                mesh.rotation.x = rotation.x;
-                mesh.rotation.y = rotation.y;
-                
-                renderer.render(scene, camera);
-            }
-            
-            // Start animation
-            animateFullscreen();
-            
-            // Handle window resize
-            function onWindowResize() {
-                camera.aspect = fullscreenContainer.clientWidth / fullscreenContainer.clientHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(fullscreenContainer.clientWidth, fullscreenContainer.clientHeight);
-            }
-            
-            window.addEventListener('resize', onWindowResize);
-            
-            // Store cleanup function
-            currentViewer = {
-                cleanup: () => {
-                    window.removeEventListener('resize', onWindowResize);
-                    fullscreenContainer.removeEventListener('mousedown', onFullscreenPointerDown);
-                    fullscreenContainer.removeEventListener('mousemove', onFullscreenPointerMove);
-                    fullscreenContainer.removeEventListener('mouseup', onFullscreenPointerUp);
-                    fullscreenContainer.removeEventListener('mouseleave', onFullscreenPointerUp);
-                    fullscreenContainer.removeEventListener('touchstart', onFullscreenPointerDown);
-                    fullscreenContainer.removeEventListener('touchmove', onFullscreenPointerMove);
-                    fullscreenContainer.removeEventListener('touchend', onFullscreenPointerUp);
-                    fullscreenContainer.removeEventListener('touchcancel', onFullscreenPointerUp);
-                    fullscreenContainer.removeEventListener('wheel', onFullscreenWheel);
-                    
-                    // Dispose Three.js resources
-                    geometry.dispose();
-                    material.dispose();
-                    renderer.dispose();
-                }
-            };
-        }
-        
-        function addFullscreenBranding(mesh, modelType) {
-            const canvas = document.createElement('canvas');
-            canvas.width = 512;
-            canvas.height = 512;
-            const ctx = canvas.getContext('2d');
-            
-            ctx.fillStyle = 'rgba(255, 255, 255, 0)';
-            ctx.fillRect(0, 0, 512, 512);
-            
-            ctx.font = 'bold 60px "Playfair Display", serif';
-            ctx.fillStyle = '#a67c52';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('B&H', 256, 180);
-            
-            ctx.font = '24px "Inter", sans-serif';
-            ctx.fillText('DESIGNS', 256, 240);
-            
-            ctx.font = '16px "Inter", sans-serif';
-            ctx.fillStyle = '#8a8a8a';
-            ctx.fillText('MOMBASA, KENYA', 256, 280);
-            
-            const texture = new THREE.CanvasTexture(canvas);
-            texture.needsUpdate = true;
-            
-            if (modelType === 'tshirt') {
-                const logoMaterial = new THREE.MeshStandardMaterial({
-                    map: texture,
-                    color: 0xffffff,
-                    roughness: 0.7,
-                    metalness: 0
-                });
-                
-                const logoGeometry = new THREE.PlaneGeometry(1.8, 0.8);
-                const logoMesh = new THREE.Mesh(logoGeometry, logoMaterial);
-                logoMesh.position.set(0, 0.8, 0.151);
-                mesh.add(logoMesh);
-            }
-        }
-        
         function closeFullscreenViewer() {
             fullscreenViewer.classList.remove('active');
             document.body.style.overflow = 'auto';
             productTitleOverlay.classList.remove('visible');
-            
-            // Clean up Three.js resources
-            if (currentViewer && currentViewer.cleanup) {
-                currentViewer.cleanup();
-            }
             
             // Hide static fallback
             staticFallback.classList.remove('active');
@@ -1999,36 +1653,43 @@
                     // Render products for selected category
                     const category = e.target.getAttribute('data-category');
                     renderProducts(category);
-                    
-                    // Smooth scroll to products section
-                    setTimeout(() => {
-                        document.getElementById('products').scrollIntoView({ 
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }, 100);
                 }
             });
             
             // Mobile menu toggle
             mobileMenuToggle.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                this.classList.toggle('active');
                 mobileMenu.classList.toggle('active');
-                this.setAttribute('aria-expanded', mobileMenu.classList.contains('active'));
+                this.setAttribute('aria-expanded', !isExpanded);
+                
+                // Prevent body scroll when menu is open
+                if (!isExpanded) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
             });
             
             // Close mobile menu when clicking a link
             mobileMenu.addEventListener('click', function(e) {
                 if (e.target.tagName === 'A') {
                     mobileMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
                     mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = 'auto';
                 }
             });
             
             // Close mobile menu when clicking outside
             document.addEventListener('click', function(e) {
-                if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                if (!mobileMenu.contains(e.target) && 
+                    !mobileMenuToggle.contains(e.target) && 
+                    mobileMenu.classList.contains('active')) {
                     mobileMenu.classList.remove('active');
+                    mobileMenuToggle.classList.remove('active');
                     mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = 'auto';
                 }
             });
             
@@ -2101,8 +1762,12 @@ ${projectDetails}
                     const targetElement = document.querySelector(href);
                     if (targetElement) {
                         // Close mobile menu if open
-                        mobileMenu.classList.remove('active');
-                        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                        if (mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.remove('active');
+                            mobileMenuToggle.classList.remove('active');
+                            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                            document.body.style.overflow = 'auto';
+                        }
                         
                         window.scrollTo({
                             top: targetElement.offsetTop - 80,
@@ -2112,8 +1777,10 @@ ${projectDetails}
                 });
             });
             
-            // Test all buttons functionality
-            console.log('All buttons and functions are properly initialized.');
+            // Test responsiveness
+            console.log('Responsive website initialized successfully.');
+            console.log('Screen width:', window.innerWidth);
+            console.log('Is mobile view:', window.innerWidth <= 767);
         }
     </script>
 </body>
